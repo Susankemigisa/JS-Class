@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="userForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" required><br><br>
+        <label for="maritualStatus">Maritual status</label>
+        <select id="maritualStatus" name="maritualStatus" required></select>
+        <option value="">--Select</option>
+        <option value="Single">Single</option>
+        <option value="Married">Married</option>
+        <option value="Divorced">Divorced</option>
+        <option value="Widowed">Widowed</option>
+        <button type="Submit">Submit</button>
+
+    </form>
+    <button onclick="alert('hello from inline javascript')">click me</button><!--inline javascript-->
+<script>
+    console.log("hello from javascript");//internal javascript 
+</script>
+<script src="index.js"></script>  
+<!--external javascript-->
+<script src="datatypesandvariables.js"></script> 
+<script src="function.js"></script>
+</body>
+</html>
