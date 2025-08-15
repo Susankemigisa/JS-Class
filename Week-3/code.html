@@ -1,0 +1,60 @@
+<div id="sub_headings"></div>
+<h1 id="heading">Original Heading</h1>
+<h2 id="first">Placeholder</h2>
+<h2>Another Heading</h2>
+<p class="about">About text 1</p>
+<p class="about">About text 2</p>
+
+<script>
+console.log("my file is connected")
+
+// Properties
+console.log(document.title);
+console.log(document.body);
+console.log(document.forms);
+console.log(document.links);
+
+// Major methods
+let heading = document.getElementById("heading");
+console.log(heading);
+heading.textContent = "WELCOME TO MAYONDO WOOD AND FURNITURE";
+heading.style.color = "red";
+
+// NOTE: variable names are case-sensitive (header ≠ Header)
+let header = document.getElementById("first");
+header.innerHTML = "<h2>For quality furniture products</h2>";
+
+// More DOM methods
+// Correct: getElementsByTagName (not getElementByTagName)
+let subHeadings = document.getElementsByTagName("h2");
+console.log(subHeadings);
+
+for (let i = 0; i < subHeadings.length; i++) {
+    console.log(subHeadings[i]);
+}
+
+// Correct: getElementsByClassName (not getElementByTagClassName)
+let paragraph = document.getElementsByClassName("about");
+console.log(paragraph.length);
+
+// Query selector examples (typos fixed: querySelector not querrySelector)
+// let thirdTitle = document.querySelector("h3"); 
+// let thirdTitle = document.querySelector("#third_title"); 
+// let thirdTitle = document.querySelector(".thirdTitle");
+
+// Corrected variable name: headingArray, not headingsArray
+let headingArray = document.querySelectorAll("h2"); // NodeList of all h2
+headingArray[1].className = "container";
+headingArray[1].id = "sub_headings";
+
+headingArray[1].setAttribute("class", "container");
+headingArray[1].setAttribute("id", "subheadings");
+headingArray[1].textContent = "Login";
+headingArray[1].style.backgroundColor = "blue";
+
+// Example: creating a new element
+let newDiv = document.createElement("div");
+newDiv.textContent = "This is a new div";
+document.body.appendChild(newDiv);
+
+</script>
