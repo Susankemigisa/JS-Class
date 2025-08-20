@@ -1,0 +1,142 @@
+General styles
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #250753;
+    color: #dbd5d5;
+    
+}
+
+.page {
+    display: none;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background:  #aaa1b8;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+.page.active {
+    display: block;
+    
+}
+
+/* Landing page */
+ #landing-page {
+    text-align: center;
+}
+
+#landing-page h1 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+/* Buttons */
+button {
+    padding: 12px 25px;
+    margin: 10px 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}  
+
+button:hover {
+    background-color: #0056b3;
+} 
+
+/* Timer */
+ #timer {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: right;
+    margin-bottom: 20px;
+    color: #ff4d4d;
+} 
+
+/* Question container */
+#question-container h2 {
+    margin-bottom: 15px;
+}
+
+#question-container p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+} 
+
+/* Options */
+.options label {
+    display: block;
+    background: #f1f1f1;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    transition: background 0.3s, border-color 0.3s;
+} 
+
+.options label:hover {
+    background: #e0e0e0;
+    border-color: #007bff;
+}
+
+.options input[type="radio"],
+.options input[type="checkbox"] {
+    margin-right: 10px;
+} 
+
+/* Navigation buttons */
+ .navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+} 
+
+ Results page */
+ #results-page h1 {
+    text-align: center;
+    margin-bottom: 25px;
+} 
+
+ #score {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+} 
+
+ #corrections p {
+    background: #c5bfbf;
+    padding: 10px;
+    border-left: 4px solid #ff4d4d;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}  
+.correction {
+    margin-bottom: 15px;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.correction p {
+    margin: 4px 0;
+}
+
+.correct {
+    color: rgb(34, 167, 34);
+    font-weight: bold;
+}
+
+.incorrect {
+    color: rgb(189, 11, 11);
+    font-weight: bold;
+}
+

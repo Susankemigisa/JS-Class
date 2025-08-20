@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Error Handling</title>
+    <link rel="stylesheet" href="errorhandling.css">
+</head>
+<body>
+
+    <!-- Error Sammary -->
+     
+
+    <div class="formContainer" >
+     <h2>REGISTER HERE</h2>
+
+     <div id="errorSammary" class="errorSammary" role="alert" aria-live="polite" hidden></div>
+
+     <br> <br>
+
+        <form id="registration" novalidate>
+
+            <div class="formGroup">
+                <label for=" name">Full Name: </label> <br> <br>
+                <input type="text" id="name" name="name" required minlength="3" autocomplete="name">
+                <div class="error" id="nameError"></div>
+            </div>
+
+            <br> <br>
+
+            <div class="formGroup">
+                <label for="email">Email: </label> <br> <br>
+                <input type="email" id="email" name="email" required autocomplete="email">
+                <div class="error" id="emailError"></div>
+            </div>
+            
+
+            <br> <br>
+
+            <div class="formGroup">
+                <label for="password">Password: </label> <br> <br>
+                <input type="password" id="password" name="password" required minlength="8" autocomplete="new-password">
+                <div class="error" id="passwordError"></div>
+            </div>
+            
+
+            <br> <br>
+
+            <button type="submit">Register</button>
+        </form>
+
+    </div>
+<!-- success message -->
+    <div id="successMessage" class="successMessage" role="alert" hidden></div>
+
+    
+<!-- data table -->
+    <h2>REGISTERED USERS</h2>
+
+    <table id="userTable">
+
+        <thead>
+            <th>Full Name</th>
+            <th>Email</th>
+        </thead>
+
+        <tbody>
+
+        </tbody>
+
+    </table>
+
+    <script src="errorhandling.js"></script>
+</body>
+</html>

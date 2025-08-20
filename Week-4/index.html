@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KASP APPLICATION QUIZ</title>
+<link rel="stylesheet" href="applicationquiz.css">
+</head>
+<body style="background-color: #250753 ;">
+
+<!-- LOGIN PAGE -->
+<div id="login-page" class="page active">
+    <h1>Login to Start Quiz</h1>
+    <form id="login-form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+        <button type="submit">Proceed</button>
+    </form>
+</div>
+
+<!-- LANDING PAGE -->
+<div id="landing-page" class="page">
+    <h1 id="user-greeting">Welcome to KASP Quiz</h1>
+    <p>Test your codding knowledge with KASP!</p>
+    <button id="start-btn">Start Quiz</button>
+</div>
+
+<!-- QUIZ CONTAINER -->
+<div id="quiz-container" class="page">
+  <p>Time left: <span id="timer">60</span>s</p>
+    <div id="question-container"></div>
+    <div class="navigation">
+        <button id="prev-btn">Previous</button>
+        <button id="next-btn">Next</button>
+    </div>
+</div>
+
+<!-- RESULTS PAGE -->
+<div id="results-page" class="page">
+    <h1>Your Results</h1>
+    <div id="score"></div>
+    <div id="corrections"></div>
+    <button id="restart-btn">Restart Quiz</button>
+</div>
+
+<script src="applicationquiz.js"></script>
+</body>
+</html>
