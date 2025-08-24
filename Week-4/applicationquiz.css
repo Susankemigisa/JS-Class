@@ -1,86 +1,134 @@
-General styles
+/* General styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #250753;
-    color: #dbd5d5;
-    
+    color: #130f0f;
 }
 
 .page {
-    display: none;
+    display: none;          /* Hide all pages by default */
     max-width: 700px;
     margin: 50px auto;
     padding: 20px;
-    background:  #aaa1b8;
+    background:  #8f55b0;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: relative;     /* Ensure pages are stacked normally */
+    z-index: 1;             /* Optional for overlapping issues */
 }
-
 
 .page.active {
-    display: block;
-    
+    display: block;         /* Show only the active page */
 }
 
-/* Landing page */
- #landing-page {
+#landing-page {
+    background-color: #250753;
+    color: #ffffff;
     text-align: center;
+    padding: 50px 20px;  /* replaces flex centering */
+    box-sizing: border-box;
+}
+
+.landing-content {
+    max-width: 600px;
 }
 
 #landing-page h1 {
-    font-size: 2em;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffd700;
+}
+
+#landing-page p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+#landing-page ul {
+    list-style: none;
+    padding: 0;
     margin-bottom: 30px;
 }
 
-/* Buttons */
-button {
+#landing-page ul li {
+    font-size: 1rem;
+    margin: 10px 0;
+    text-align: left;
+    position: relative;
+    padding-left: 25px;
+}
+
+#landing-page ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #ffd700;
+}
+
+/* Landing Page Continue Button */
+#landing-page button {
+    background-color: #ffd700;
+    color: #250753;
+    font-size: 1.2rem;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+#landing-page button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+    background-color: #e6c200;
+}
+
+/* General Buttons for Quiz/Results pages */
+button:not(#landing-page button) {
     padding: 12px 25px;
     margin: 10px 5px;
     cursor: pointer;
-    background-color: #007bff;
+    background-color: #250753;
     color: #fff;
     border: none;
     border-radius: 6px;
     font-size: 16px;
     transition: background-color 0.3s;
-}  
+}
 
-button:hover {
+button:not(#landing-page button):hover {
     background-color: #0056b3;
-} 
+}
 
 /* Timer */
- #timer {
+#timer {
     font-size: 1.2em;
     font-weight: bold;
     text-align: right;
     margin-bottom: 20px;
-    color: #ff4d4d;
-} 
-
-/* Question container */
-#question-container h2 {
-    margin-bottom: 15px;
+    color: #ba0b0b;
 }
 
+/* Question container */
 #question-container p {
     font-size: 1.1em;
     margin-bottom: 15px;
-} 
+}
 
 /* Options */
 .options label {
     display: block;
-    background: #f1f1f1;
+    background: rgb(236, 233, 233);
     padding: 12px 15px;
     margin: 8px 0;
     border-radius: 5px;
     cursor: pointer;
     border: 1px solid #ccc;
     transition: background 0.3s, border-color 0.3s;
-} 
+}
 
 .options label:hover {
     background: #e0e0e0;
@@ -90,44 +138,41 @@ button:hover {
 .options input[type="radio"],
 .options input[type="checkbox"] {
     margin-right: 10px;
-} 
+}
 
 /* Navigation buttons */
- .navigation {
+.navigation {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-} 
+}
 
- Results page */
- #results-page h1 {
+/* Results page */
+#results-page h1 {
     text-align: center;
     margin-bottom: 25px;
-} 
+}
 
- #score {
+#score {
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
     color: #007bff;
-} 
+}
 
- #corrections p {
-    background: #c5bfbf;
-    padding: 10px;
-    border-left: 4px solid #ff4d4d;
-    border-radius: 4px;
-    margin-bottom: 8px;
-}  
-.correction {
+#corrections .correction {
     margin-bottom: 15px;
     padding: 8px;
     border-radius: 5px;
 }
 
-.correction p {
-    margin: 4px 0;
+#corrections p {
+    background: #8f55b0;
+    padding: 10px;
+    border-left: 4px solid #ff4d4d;
+    border-radius: 4px;
+    margin-bottom: 8px;
 }
 
 .correct {
@@ -140,3 +185,19 @@ button:hover {
     font-weight: bold;
 }
 
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    #landing-page h1 {
+        font-size: 2rem;
+    }
+
+    #landing-page p,
+    #landing-page ul li {
+        font-size: 1rem;
+    }
+
+    button {
+        width: 100%;
+        margin: 8px 0;
+    }
+}

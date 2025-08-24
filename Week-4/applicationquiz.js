@@ -1,216 +1,31 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Pages & UI
-  const loginPage = document.getElementById("login-page");
+  document.body.style.visibility = "visible";
+
   const landingPage = document.getElementById("landing-page");
+  const loginPage = document.getElementById("login-page");
   const quizContainer = document.getElementById("quiz-container");
   const resultsPage = document.getElementById("results-page");
 
-  const userGreeting = document.getElementById("user-greeting");
   const loginForm = document.getElementById("login-form");
-
   const questionContainer = document.getElementById("question-container");
   const timerElement = document.getElementById("timer");
   const scoreDiv = document.getElementById("score");
   const correctionsDiv = document.getElementById("corrections");
 
-  const startBtn = document.getElementById("start-btn");
   const prevBtn = document.getElementById("prev-btn");
   const nextBtn = document.getElementById("next-btn");
   const restartBtn = document.getElementById("restart-btn");
+  const proceedLoginBtn = document.getElementById("proceed-login-btn");
 
-// ---- State ----
-let currentQuestionIndex = 0;
-let userAnswers = [];                  // array of arrays (selected indices) or null
-let questionTimer = null;
-const QUESTION_TIME = 60;              // seconds per question
-let timeLeft = QUESTION_TIME;
+  let currentQuestionIndex = 0;
+  let userAnswers = [];
+  let questionTimer = null;
+  const QUESTION_TIME = 60;
+  let timeLeft = QUESTION_TIME;
+  let userName = "";
 
-// ---- Helper ----
-function mmss(t) {
-  const m = Math.floor(t / 60).toString().padStart(2, "0");
-  const s = (t % 60).toString().padStart(2, "0");
-  return `${m}:${s}`;
-}
+  const questions = [// ---- Quiz Questions (keep your array) ----
 
-// ---- Login ----
-loginForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  if (!name || !email) {
-    alert("Please enter both name and email.");
-    return;
-  }
-  userGreeting.textContent = `Hello, ${name}! Ready for your quiz?`;
-  loginPage.classList.remove("active");
-  landingPage.classList.add("active");
-});
-
-// ---- Start Quiz ----
-startBtn.addEventListener("click", function () {
-  landingPage.classList.remove("active");
-  quizContainer.classList.add("active");
-  currentQuestionIndex = 0;
-  userAnswers = [];
-  showQuestion();
-  startTimer();
-});
-
-// ---- Navigation ----
-prevBtn.addEventListener("click", function () {
-  recordAnswer();
-  if (currentQuestionIndex > 0) {
-    currentQuestionIndex--;
-    showQuestion();
-    startTimer(); // reset timer on revisit (change if you want to persist)
-  }
-});
-
-nextBtn.addEventListener("click", function () {
-  recordAnswer();
-  if (currentQuestionIndex < questions.length - 1) {
-    currentQuestionIndex++;
-    showQuestion();
-    startTimer();
-  } else {
-    showResults();
-  }
-});
-
-restartBtn.addEventListener("click", function () {
-  location.reload();
-});
-
-// ---- Render Question ----
-function showQuestion() {
-  const q = questions[currentQuestionIndex];
-  const saved = userAnswers[currentQuestionIndex] || [];
-
-  let html = `<h2>Question ${currentQuestionIndex + 1} of ${questions.length}</h2>`;
-  html += `<p>${q.question}</p>`;
-  html += `<div class="options">`;
-
-  if (q.type === "single" || q.type === "truefalse") {
-    q.options.forEach((opt, i) => {
-      const checked = saved.includes(i) ? "checked" : "";
-      html += `
-        <label>
-          <input type="radio" name="option" value="${i}" ${checked}> ${opt}
-        </label>`;
-    });
-  } else if (q.type === "multiple") {
-    q.options.forEach((opt, i) => {
-      const checked = saved.includes(i) ? "checked" : "";
-      html += `
-        <label>
-          <input type="checkbox" name="option" value="${i}" ${checked}> ${opt}
-        </label>`;
-    });
-  }
-
-  html += `</div>`;
-  questionContainer.innerHTML = html;
-
-  // Prev button visibility & Next label
-  prevBtn.style.display = currentQuestionIndex === 0 ? "none" : "inline-block";
-  nextBtn.textContent =
-    currentQuestionIndex === questions.length - 1 ? "Finish" : "Next";
-}
-
-// ---- Record Answer ----
-function recordAnswer() {
-  const selected = Array.from(
-    document.querySelectorAll('input[name="option"]:checked')
-  ).map((el) => parseInt(el.value, 10));
-  userAnswers[currentQuestionIndex] = selected.length ? selected : null;
-}
-
-// ---- Auto-advance when timer runs out ----
-function goToNextQuestion() {
-  recordAnswer(); // save answer before moving on
-  currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
-    showQuestion();
-    startTimer();
-  } else {
-    showResults();
-  }
-}
-
-// ---------------- TIMER ----------------
-function startTimer() {
-  // ✅ stop any old running timer before starting a new one
-  clearInterval(questionTimer);
-
-  timeLeft = QUESTION_TIME;
-  updateTimer();
-
-  questionTimer = setInterval(() => {
-    timeLeft--;
-    updateTimer();
-    if (timeLeft <= 0) {
-      clearInterval(questionTimer);
-      goToNextQuestion(); // move to next question automatically
-    }
-  }, 1000);
-}
-
-function updateTimer() {
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  timerElement.textContent =
-    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-}
-
-// ---- Results ----
-function showResults() {
-  clearInterval(questionTimer);
-  quizContainer.classList.remove("active");
-  resultsPage.classList.add("active");
-
-  let score = 0;
-  correctionsDiv.innerHTML = "";
-
-  questions.forEach((q, index) => {
-    const userAns = userAnswers[index];
-    let isCorrect = false;
-
-    if (q.type === "single" || q.type === "truefalse") {
-      isCorrect = userAns?.[0] === q.answer;
-    } else if (q.type === "multiple") {
-      const correct = [...q.answers].sort().join(",");
-      const selected = userAns ? [...userAns].sort().join(",") : "";
-      isCorrect = selected === correct;
-    }
-
-    if (isCorrect) score++;
-
-    const yourText =
-      userAns && userAns.length
-        ? userAns.map((i) => q.options[i]).join(", ")
-        : "No answer";
-
-    const correctText =
-      q.type === "single" || q.type === "truefalse"
-        ? q.options[q.answer]
-        : q.answers.map((i) => q.options[i]).join(", ");
-
-    correctionsDiv.innerHTML += `
-      <div class="correction">
-        <p><strong>Q${index + 1}:</strong> ${q.question}</p>
-        <p><strong>Your answer:</strong> <span class="${
-          isCorrect ? "correct" : "incorrect"
-        }">${yourText}</span></p>
-        <p><strong>Correct answer:</strong> <span class="correct">${correctText}</span></p>
-        <hr>
-      </div>`;
-  });
-
-  scoreDiv.textContent = `You scored ${score} out of ${questions.length}`;
-}
-
-
-   const questions = [
   { 
     type: "single", 
     question: "What does HTML stand for?", 
@@ -326,4 +141,136 @@ function showResults() {
   { type: "truefalse", question: "The command 'git log' shows the commit history.", options: ["True", "False"], answer: 0 },
   { type: "truefalse", question: "GitHub allows collaboration between multiple developers.", options: ["True", "False"], answer: 0 },
   { type: "multiple", question: "Which actions are common in Git workflow?", options: ["commit", "push", "pull", "merge"], answers: [0,1,2,3] }
-   ]})
+   ]
+
+  
+
+  function showPage(page) {
+    [landingPage, loginPage, quizContainer, resultsPage].forEach(p => p.classList.remove("active"));
+    page.classList.add("active");
+  }
+
+  proceedLoginBtn.addEventListener("click", () => showPage(loginPage));
+
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    if (!name || !email) { alert("Please enter both name and email."); return; }
+    userName = name;
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    showPage(quizContainer);
+    showQuestion();
+    startTimer();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    recordAnswer();
+    if (currentQuestionIndex > 0) {
+      currentQuestionIndex--;
+      showQuestion();
+      startTimer();
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    recordAnswer();
+    if (currentQuestionIndex < questions.length - 1) {
+      currentQuestionIndex++;
+      showQuestion();
+      startTimer();
+    } else {
+      showResults();
+    }
+  });
+
+  restartBtn.addEventListener("click", () => {
+    clearInterval(questionTimer);
+    showPage(landingPage);
+  });
+
+  function showQuestion() {
+    const q = questions[currentQuestionIndex];
+    const saved = userAnswers[currentQuestionIndex] || [];
+    let html = `<h2>Question ${currentQuestionIndex + 1} of ${questions.length}</h2>`;
+    html += `<p>${q.question}</p><div class="options">`;
+
+    if (q.type === "single" || q.type === "truefalse") {
+      q.options.forEach((opt, i) => {
+        const checked = saved.includes(i) ? "checked" : "";
+        html += `<label><input type="radio" name="option" value="${i}" ${checked}> ${opt}</label>`;
+      });
+    } else if (q.type === "multiple") {
+      q.options.forEach((opt, i) => {
+        const checked = saved.includes(i) ? "checked" : "";
+        html += `<label><input type="checkbox" name="option" value="${i}" ${checked}> ${opt}</label>`;
+      });
+    }
+
+    html += `</div>`;
+    questionContainer.innerHTML = html;
+    prevBtn.style.display = currentQuestionIndex === 0 ? "none" : "inline-block";
+    nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? "Finish" : "Next";
+  }
+
+  function recordAnswer() {
+    const selected = Array.from(document.querySelectorAll('input[name="option"]:checked')).map(el => parseInt(el.value, 10));
+    userAnswers[currentQuestionIndex] = selected.length ? selected : null;
+  }
+
+  function startTimer() {
+    clearInterval(questionTimer);
+    timeLeft = QUESTION_TIME;
+    updateTimer();
+    questionTimer = setInterval(() => {
+      timeLeft--;
+      updateTimer();
+      if (timeLeft <= 0) {
+        clearInterval(questionTimer);
+        nextBtn.click();
+      }
+    }, 1000);
+  }
+
+  function updateTimer() {
+    timerElement.textContent = timeLeft;
+  }
+
+  function showResults() {
+    clearInterval(questionTimer);
+    showPage(resultsPage);
+    let score = 0;
+    correctionsDiv.innerHTML = "";
+
+    questions.forEach((q, index) => {
+      const userAns = userAnswers[index];
+      let isCorrect = false;
+
+      if (q.type === "single" || q.type === "truefalse") {
+        isCorrect = userAns?.[0] === q.answer;
+      } else if (q.type === "multiple") {
+        const correct = [...q.answers].sort().join(",");
+        const selected = userAns ? [...userAns].sort().join(",") : "";
+        isCorrect = selected === correct;
+      }
+
+      if (isCorrect) score++;
+
+      const yourText = userAns?.length ? userAns.map(i => q.options[i]).join(", ") : "No answer";
+      const correctText = (q.type === "single" || q.type === "truefalse") ? q.options[q.answer] : q.answers.map(i => q.options[i]).join(", ");
+
+      correctionsDiv.innerHTML += `
+        <div class="correction">
+          <p><strong>Q${index + 1}:</strong> ${q.question}</p>
+          <p><strong>Your answer:</strong> <span class="${isCorrect ? "correct" : "incorrect"}">${yourText}</span></p>
+          <p><strong>Correct answer:</strong> <span class="correct">${correctText}</span></p>
+          <hr>
+        </div>
+      `;
+    });
+
+    scoreDiv.textContent = `${userName}, you scored ${score} out of ${questions.length}`;
+  }
+});
+
