@@ -4,51 +4,51 @@ This repository contains my JavaScript class work and exercises organized by wee
 
 # Class Structure
 JS class/
-│── practice/           # General practice exercises
-│   ├── datatypes.js
-│   ├── function.js
-│   ├── index.html
-│   ├── index.js
-│   ├── mfunctions.js
-│   ├── moperators.js
-│   ├── operators.js
-│   └── Variables.js
+ practice/           # General practice exercises
+datatypes.js
+ function.js
+ index.html
+ index.js
+mfunctions.js
+ moperators.js
+ operators.js
+ Variables.js
 │
-│── week-1/             # Week 1 - Basics
-│   ├── datatypesandvariables.js
-│   ├── function.js
-│   ├── index.html
-│   ├── index.js
-│   ├── moperators.js
-│   ├── operators.js
-│   └── variables.js
+week-1/             # Week 1 - Basics
+datatypesandvariables.js
+ function.js
+ index.html
+ index.js
+ moperators.js
+ operators.js
+ variables.js
 │
-│── Week-2/             # Week 2 - (content not shown)
+ Week-2/             # Week 2 - (loops, strings)
 │
-│── Week-3/             # Week 3 - DOM, Events, Forms, Storage
-│   ├── code.html
-│   ├── dom1.js
-│   ├── errorhandling.css
-│   ├── errorhandling.html
-│   ├── errorhandling.js
-│   ├── events.html
-│   ├── events.js
-│   ├── forms-and-tables.html
-│   ├── forms-and-tables.js
-│   ├── index.html
-│   ├── localstorage-vs-sessionstorage.html
-│   ├── localstorage-vs-sessionstorage.js
-│   ├── regularexpressionand validation.js
-│   └── tbody-proof.js
+ Week-3/             # Week 3 - DOM, Events, Forms, Storage
+ code.html
+ dom1.js
+ errorhandling.css
+ errorhandling.html
+ errorhandling.js
+ events.html
+ events.js
+ forms-and-tables.html
+ forms-and-tables.js
+ index.html
+ localstorage-vs-sessionstorage.html
+ localstorage-vs-sessionstorage.js
+ regularexpressionand validation.js
+ tbody-proof.js
 │
-│── Week-4/             # Week 4 - Advanced JS & Applications
-│   ├── applicationquiz.css
-│   ├── applicationquiz.js
-│   ├── chart.js
-│   ├── chartjs.html
-│   ├── es5-vs-es6.js
-│   ├── index.html
-│   └── oop.js
+  Week-4/             # Week 4 - Advanced JS & Applications
+  applicationquiz.css
+  applicationquiz.js
+  chart.js
+ chartjs.html
+ es5-vs-es6.js
+ index.html
+ oop.js
 
 # Topics Covered
 # Week 1: JavaScript Basics
@@ -91,7 +91,7 @@ Mini Application Quiz
 
 Clone the repository:
 
-git clone https://github.com/YOUR-USERNAME/JS-Class.git
+git clone https://github.com/Susankemigisa /[JS-Class](https://github.com/Susankemigisa/JS-Class/tree/main).git
 cd "JS class"
 
 
