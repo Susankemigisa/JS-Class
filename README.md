@@ -1,45 +1,117 @@
-# JS-Class
+# JavaScript Class 
 
- “JavaScript lessons for week-by-week learning.
+This repository contains my JavaScript class work and exercises organized by weeks. It covers the fundamentals of JavaScript, from variables and operators to DOM manipulation, local storage, forms, charts, and OOP.
 
----
+# Class Structure
+JS class/
+│── practice/           # General practice exercises
+│   ├── datatypes.js
+│   ├── function.js
+│   ├── index.html
+│   ├── index.js
+│   ├── mfunctions.js
+│   ├── moperators.js
+│   ├── operators.js
+│   └── Variables.js
+│
+│── week-1/             # Week 1 - Basics
+│   ├── datatypesandvariables.js
+│   ├── function.js
+│   ├── index.html
+│   ├── index.js
+│   ├── moperators.js
+│   ├── operators.js
+│   └── variables.js
+│
+│── Week-2/             # Week 2 - (content not shown)
+│
+│── Week-3/             # Week 3 - DOM, Events, Forms, Storage
+│   ├── code.html
+│   ├── dom1.js
+│   ├── errorhandling.css
+│   ├── errorhandling.html
+│   ├── errorhandling.js
+│   ├── events.html
+│   ├── events.js
+│   ├── forms-and-tables.html
+│   ├── forms-and-tables.js
+│   ├── index.html
+│   ├── localstorage-vs-sessionstorage.html
+│   ├── localstorage-vs-sessionstorage.js
+│   ├── regularexpressionand validation.js
+│   └── tbody-proof.js
+│
+│── Week-4/             # Week 4 - Advanced JS & Applications
+│   ├── applicationquiz.css
+│   ├── applicationquiz.js
+│   ├── chart.js
+│   ├── chartjs.html
+│   ├── es5-vs-es6.js
+│   ├── index.html
+│   └── oop.js
 
-##  Table of Contents
-JS-CLASS
-    week1
-    week2
-    week3
-    week4
+# Topics Covered
+# Week 1: JavaScript Basics
 
----
+Variables & Data Types
 
-##  About
-jS-Class ia about most of the topics that i was about to come in the class lessons week by week like functions, arrays, strings, boolens etc.
+Operators & Expressions
+
+Functions
+
+# Week 2: presentations
+loops
+strings
+
+# Week 3: DOM & Browser APIs
+
+DOM Manipulation
+
+Events & Event Listeners
+
+Forms and Tables
+
+Error Handling
+
+LocalStorage vs SessionStorage
+
+Regular Expressions & Validation
+
+# Week 4: Advanced JavaScript
+
+ES5 vs ES6 features
+
+Object-Oriented Programming (OOP)
+
+Chart.js for visualizations
+
+Mini Application Quiz
+
+# How to Run
+
+Clone the repository:
+
+git clone https://github.com/YOUR-USERNAME/JS-Class.git
+cd "JS class"
 
 
-##  Usage
-Simple steps to get started:
+Open the corresponding index.html file inside each week’s folder in a browser.
 
-1. Clone the repo  
-   ```bash
-   git clone https://github.com/Susankemigisa/https://github.com/Susankemigisa/JS-Class.git
-   cd JS-Class
+Test JavaScript features directly in the browser console or inside the UI provided.
 
-Contributing
+# Learning Goals
 
-Contributions are welcome!
+Strengthen JavaScript fundamentals
 
-Fork this repository
+Understand DOM manipulation & browser APIs
 
-Create a feature branch (git checkout -b feature-A)
+Learn persistent storage with LocalStorage & SessionStorage
 
-Commit your changes (git commit -m "Add feature A")
+Practice ES6 features & OOP
 
-Push to branch (git push origin feature-A)
+Build small interactive projects (forms, charts, quizzes)
 
-Open a pull request
+# Author
 
-
-License
-
-MIT © [Kemigisa Suzan]
+Susan Kemigisa
+This repo documents my JavaScript learning journey with weekly structured exercises.
