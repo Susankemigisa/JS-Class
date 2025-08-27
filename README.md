@@ -22,7 +22,7 @@ Simple steps to get started:
 
 1. Clone the repo  
    ```bash
-   git clone https://github.com/Susankemigisa/JS-Class.git
+   git clone https://github.com/Susankemigisa/https://github.com/Susankemigisa/JS-Class.git
    cd JS-Class
 
 Contributing
